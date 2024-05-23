@@ -7,23 +7,19 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-public class UserActivity extends AppCompatActivity {
+public class MenuCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.auth_login_oldman); // UserLogin page를 보여줌
+        setContentView(R.layout.menu_category);
 
-
-
-        AppCompatButton deliveryButton = findViewById(R.id.delivery_button);
+        AppCompatButton deliveryButton = findViewById(R.id.Koreanfood);
         deliveryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, MenuCategory.class);
+                Intent intent = new Intent(MenuCategory.this, MenuSelect.class);
                 startActivity(intent);
             }
         });
     }
-
-
 }

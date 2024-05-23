@@ -225,6 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="순대국"
+                    android:layout_weight="1"
                     android:textSize="25pt"
                     android:gravity="center_vertical"
                     android:padding="10dp" />
@@ -232,7 +233,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-
+                    android:layout_weight="1"
                     android:contentDescription="순대국 이미지" />
             </LinearLayout>
 

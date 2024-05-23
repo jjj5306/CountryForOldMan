@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주소 "
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/address_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="주소 입력"
+        android:textSize="16sp"
+        android:paddingTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메뉴 "
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/menu_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="메뉴 입력"
+        android:textSize="16sp"
+        android:paddingTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="결제수단 "
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/payment_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
+
+        <RadioButton
+            android:id="@+id/payment_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카드"
+            android:textSize="16sp"
+            android:paddingTop="4dp"/>
+
+        <RadioButton
+            android:id="@+id/payment_cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현금"
+            android:textSize="16sp"
+            android:paddingTop="4dp"/>
+
+        <RadioButton
+            android:id="@+id/payment_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계좌이체"
+            android:textSize="16sp"
+            android:paddingTop="4dp"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가격 "
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/price_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="가격 입력"
+        android:textSize="16sp"
+        android:paddingTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="특이사항 "
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/notes_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="특이사항 입력"
+        android:textSize="16sp"
+        android:paddingTop="4dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:background="@drawable/button_background"
+        android:text="주문 접수"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+</LinearLayout>
