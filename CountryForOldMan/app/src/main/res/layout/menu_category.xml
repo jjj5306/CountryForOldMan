@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="100px">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="한식"
+        android:layout_weight="1"
+        android:textSize="30pt"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20px"
+        android:background="@drawable/button_background" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="양식"
+        android:layout_weight="1"
+        android:textSize="30pt"
+        android:textColor="@color/white"
+
+        android:layout_marginBottom="20px"
+        android:background="@drawable/button_background" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="중식"
+        android:textColor="@color/white"
+        android:layout_weight="1"
+        android:textSize="30pt"
+        android:layout_marginBottom="20px"
+        android:background="@drawable/button_background" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="일식"
+        android:textColor="@color/white"
+
+        android:layout_weight="1"
+        android:textSize="30pt"
+        android:layout_marginBottom="20px"
+        android:background="@drawable/button_background" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="간식"
+        android:textColor="@color/white"
+
+        android:layout_weight="1"
+        android:textSize="30pt"
+        android:layout_marginBottom="20px"
+        android:background="@drawable/button_background" />
+
+</LinearLayout>

@@ -1,0 +1,174 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- Email Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="휴대폰 번호"
+                android:inputType="phone" />
+
+            <Button
+                android:id="@+id/btnCheckName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복확인"
+                android:backgroundTint="@color/blue"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Phone Number Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/etname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="성함"
+                android:inputType="textEmailAddress" />
+
+
+        </LinearLayout>
+
+        <!-- Verification Code -->
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="주소 입력"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Birthdate -->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="10dp">-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/etYear"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:hint="년 (YYYY)"-->
+<!--                android:inputType="number" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/etMonth"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:hint="월 (MM)"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_marginLeft="10dp" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/etDay"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:hint="일 (DD)"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--        </LinearLayout>-->
+
+
+        <!-- Gender -->
+<!--        <RadioGroup-->
+<!--            android:id="@+id/rgGender"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="10dp">-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/rbFemale"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="여성"-->
+<!--                android:checked="true" />-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/rbMale"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="남성" />-->
+<!--        </RadioGroup>-->
+
+        <!-- Agreement Section -->
+
+
+        <!-- Submit Button -->
+
+        <!--            android:scaleX="2.0"-->
+<!--            android:scaleY="2.0"-->
+
+
+        <CheckBox
+            android:id="@+id/ownerCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="사장님으로 가입하시겠습니까?"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnStartCFO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입 완료"
+            android:textSize="20dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>
