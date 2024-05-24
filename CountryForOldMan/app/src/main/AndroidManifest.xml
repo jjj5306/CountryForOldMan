@@ -17,6 +17,7 @@
         <activity android:name=".OwnerActivity" />
         <activity android:name=".MenuCategory"></activity>
         <activity android:name=".MenuSelect"></activity>
+        <activity android:name=".RegisterShop"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
