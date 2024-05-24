@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "countryforoldman.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static volatile DatabaseHelper databaseHelper = null;
     private SQLiteDatabase database = null;
 
@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(UserEntity.SQL_CREATE_USER_TABLE);
-        db.execSQL(ShopEntity.SQL_CREATE_SHOP_TABLE);  // ShopEntity 테이블도 생성하도록 추가
+        db.execSQL(ShopEntity.SQL_CREATE_SHOP_TABLE);
     }
 
     @Override
