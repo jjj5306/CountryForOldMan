@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText etPassword;
     private UserDAO userDAO;
     private UserRepository userRepository;
+    private static User user;
+
+    public static User getUser() {
+        return user;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         // 데이터베이스 생성
         databaseHelper = DatabaseHelper.getInstance(this);
         databaseHelper.getDatabase();
-
 
 
         // 첫 화면에서 사용자가 입력한 전화번호와 비밀번호
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // UserRepository를 사용하여 로그인 처리
                 UserRepository userRepository = new UserRepository(MainActivity.this);
-                User user = userRepository.loginUser(phoneNumber, password);
+                user = userRepository.loginUser(phoneNumber, password);
 
                 // 로그인 정보와 일치하는 유저가 있을 경우 권한 분류 코드 실행
                 if (user != null) {
