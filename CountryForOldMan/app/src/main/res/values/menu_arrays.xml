@@ -1,0 +1,38 @@
+<!--가게등록할때 들어가는 문자열들을 저장한 레이아웃입니다.-->
+
+<resources>
+    <string-array name="category_array">
+        <item>선택</item>
+        <item>한식</item>
+        <item>양식</item>
+        <item>일식</item>
+        <item>중식</item>
+        <item>스낵</item>
+    </string-array>
+
+    <string-array name="detail_menu_koreanfood">
+        <item>찌개</item>
+        <item>백반</item>
+        <item>떡볶이</item>
+    </string-array>
+    <string-array name="detail_menu_westernfood">
+        <item>파스타</item>
+        <item>돈까스</item>
+        <item>햄버거</item>
+    </string-array>
+    <string-array name="detail_menu_jpanesefood">
+        <item>초밥</item>
+        <item>라멘</item>
+        <item>우동</item>
+    </string-array>
+    <string-array name="detail_menu_chinesefood">
+        <item>짜장면</item>
+        <item>짬뽕</item>
+        <item>마라탕</item>
+    </string-array>
+    <string-array name="detail_menu_snack">
+        <item>커피</item>
+        <item>아이스크림</item>
+        <item>탕후루</item>
+    </string-array>
+</resources>

@@ -37,6 +37,7 @@
 
     <!-- 배달 정보 입력 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonEnterDeliveryInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="배달 정보 입력"
