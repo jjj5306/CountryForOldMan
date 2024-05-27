@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cbnusoftandriod.countryforoldman.repository.UserDAO;
 import com.cbnusoftandriod.countryforoldman.repository.UserRepository;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -23,6 +24,9 @@ public class SignUpActivity extends AppCompatActivity {
     public CheckBox ownerCheck;
     private boolean returnValue;
 
+
+    public Button btnCheck;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         etAddress = findViewById(R.id.etAddress);
         ownerCheck = findViewById(R.id.ownerCheck);
+        btnCheck = findViewById(R.id.btnCheckName);
 
         ownerCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -77,6 +82,17 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
                 }
+
+            }
+        });
+
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDAO userDAO = UserDAO.getInstance(SignUpActivity.this);
+                String phoneNumber = etPhoneNumber.getText().toString();
+                if(userDAO.isUserPhoneNumberExists(phoneNumber))
+                    Toast.makeText(SignUpActivity.this, "이미 존재하는 회원입니다.", Toast.LENGTH_SHORT).show();
 
             }
         });

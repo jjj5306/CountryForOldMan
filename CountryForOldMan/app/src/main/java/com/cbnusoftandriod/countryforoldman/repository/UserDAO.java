@@ -111,4 +111,22 @@ public class UserDAO {
         return address;
     }
 
+    public boolean isUserPhoneNumberExists(String phonenumber) { //존재하면 true 없으면 false
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = null;
+        boolean exists = false;
+
+        try {
+            String query = "SELECT 1 FROM user WHERE phonenumber = ? LIMIT 1";
+            cursor = db.rawQuery(query, new String[]{phonenumber});
+            exists = cursor.moveToFirst();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+        return exists;
+    }
+
 }
