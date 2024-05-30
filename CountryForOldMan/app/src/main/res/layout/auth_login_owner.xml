@@ -35,12 +35,12 @@
         android:padding="16dp"
         android:elevation="4dp" />
 
-    <!-- 배달 정보 입력 버튼 -->
+    <!-- 가게 등록 입력 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonEnterDeliveryInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="배달 정보 입력"
+        android:text="가게등록"
         android:layout_weight="1"
         android:textSize="40sp"
         android:background="@drawable/button_background"

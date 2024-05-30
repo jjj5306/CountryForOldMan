@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -37,17 +38,17 @@
         android:layout_marginTop="8dp"
         android:textColor="#000000"/>
 
+    <!-- 주소 입력 -->
     <EditText
         android:id="@+id/editTextPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_background"
         android:hint="전화번호 입력"
         android:inputType="phone"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:layout_marginTop="8dp"/>
+        android:padding="10dp" />
 
-    <!-- 주소 입력 -->
     <TextView
         android:id="@+id/textViewAddress"
         android:layout_width="wrap_content"
@@ -55,7 +56,8 @@
         android:text="주소"
         android:textSize="16sp"
         android:layout_marginTop="8dp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        tools:ignore="DuplicateIds" />
 
     <EditText
         android:id="@+id/editTextAddress"
@@ -67,7 +69,7 @@
         android:layout_marginTop="8dp"/>
 
     <TextView
-        android:id="@+id/textViewAddress"
+        android:id="@+id/textViewtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="영업시간"
@@ -108,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="작"
+            android:hint="분"
             android:background="@drawable/edittext_background"
             android:inputType="number"
             android:maxLength="2"
@@ -128,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="종"
+            android:hint="시"
             android:background="@drawable/edittext_background"
             android:inputType="number"
             android:maxLength="2111"
@@ -147,7 +149,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="료"
+            android:hint="분"
             android:background="@drawable/edittext_background"
             android:inputType="number"
             android:maxLength="2"

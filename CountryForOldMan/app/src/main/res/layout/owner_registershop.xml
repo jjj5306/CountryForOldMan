@@ -18,10 +18,11 @@
         android:layout_marginTop="32dp" />
 
     <!-- 가게 정보 입력 부분 포함 -->
-    <include
-        layout="@layout/owner_registershop_shop_info" />
 
     <!-- 등록하기 버튼 -->
+
+    <include layout="@layout/owner_registershop_shop_info" />
+
     <Button
         android:id="@+id/buttonRegisterStore"
         android:layout_width="match_parent"
