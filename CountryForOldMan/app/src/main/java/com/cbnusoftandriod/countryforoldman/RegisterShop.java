@@ -1,6 +1,7 @@
 package com.cbnusoftandriod.countryforoldman;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,9 +13,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cbnusoftandriod.countryforoldman.repository.ShopRepository;
-//import com.cbnusoftandriod.countryforoldman.utils.CoordinateHelper;
+import com.cbnusoftandriod.countryforoldman.util.GeocoderHelper;
 
 public class RegisterShop extends AppCompatActivity {
+
+    private static final String TAG = "RegisterShop";
 
     private Spinner spinnerCategory;
     private Spinner spinnerSubCategory;
@@ -90,15 +93,19 @@ public class RegisterShop extends AppCompatActivity {
         // 가게 정보 유효성 검사
         if (shopName.isEmpty() || phoneNumber.isEmpty() || address.isEmpty() || category.isEmpty()) {
             Toast.makeText(RegisterShop.this, "모든 빈 칸을 채워주세요!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "유효성 검사 실패: 빈 칸 존재");
             return;
         }
 
         // 주소를 위도와 경도로 변환
-        //double[] coordinates = CoordinateHelper.getCoordinatesFromAddress(RegisterShop.this, address);
-        //if (coordinates == null) {
-        //    Toast.makeText(RegisterShop.this, "유효한 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
-        //    return;
-        //}
+        double[] coordinates = GeocoderHelper.getCoordinatesFromAddress(RegisterShop.this, address);
+        if (coordinates == null) {
+            Toast.makeText(RegisterShop.this, "유효한 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "유효하지 않은 주소: " + address);
+            return;
+        }
+
+        Log.d(TAG, "유효한 주소 변환 성공: 위도 = " + coordinates[0] + ", 경도 = " + coordinates[1]);
 
         // ShopRepository를 사용하여 가게 등록
         ShopRepository shopRepository = new ShopRepository(RegisterShop.this);
@@ -106,7 +113,11 @@ public class RegisterShop extends AppCompatActivity {
 
         if (newShopId != -1) {
             Toast.makeText(RegisterShop.this, "가게 등록 성공!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "가게 등록 성공: ID = " + newShopId);
             // 등록 성공 시 메인 화면으로 이동 또는 다른 적절한 액션
+        } else {
+            Toast.makeText(RegisterShop.this, "가게 등록 실패!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "가게 등록 실패");
         }
     }
 }
