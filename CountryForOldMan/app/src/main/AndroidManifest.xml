@@ -12,12 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Countryforoldman"
         tools:targetApi="31">
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".UserActivity" />
-        <activity android:name=".OwnerActivity" />
         <activity android:name=".MenuCategory"></activity>
         <activity android:name=".MenuSelect"></activity>
+        <activity android:name=".MenuDetail"></activity>
+        <activity android:name=".ModifyShopInfo"></activity>
+        <activity android:name=".Oldmaninfo"></activity>
+        <activity android:name=".OrderList"></activity>
+        <activity android:name=".Owner_RegisterOrder"></activity>
+        <activity android:name=".OwnerActivity"></activity>
         <activity android:name=".RegisterShop"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".UserActivity"></activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

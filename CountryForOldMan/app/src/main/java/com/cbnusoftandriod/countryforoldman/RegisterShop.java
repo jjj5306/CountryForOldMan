@@ -7,18 +7,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cbnusoftandriod.countryforoldman.repository.ShopRepository;
+
+import org.w3c.dom.Text;
 //import com.cbnusoftandriod.countryforoldman.utils.CoordinateHelper;
 
 public class RegisterShop extends AppCompatActivity {
 
     private Spinner spinnerCategory;
     private Spinner spinnerSubCategory;
-    private EditText etShopName;
+    private TextView etShopName;
     private EditText etPhoneNumber;
     private EditText etAddress;
     private Button btnRegisterShop;
