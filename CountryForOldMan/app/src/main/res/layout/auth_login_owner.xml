@@ -9,9 +9,8 @@
     android:background="#F5F5F5">
 
     <!-- 주문내역 버튼 -->
-
-    <!-- 가게수정 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/OrderList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
@@ -23,6 +22,21 @@
         android:textColor="#FFFFFF"
         android:textSize="40sp" />
 
+    <!-- 가게 등록 입력 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegisterOrderInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="주문 정보 입력"
+        android:layout_weight="1"
+        android:textSize="40sp"
+        android:background="@drawable/button_background"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="4dp" />
+
+    <!--가게등록버튼-->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonEnterDeliveryInfo"
         android:layout_width="match_parent"
@@ -37,27 +51,17 @@
         android:elevation="4dp" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ModifyShopInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="가게수정"
-        android:layout_weight="1"
-        android:textSize="40sp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button_background"
-        android:textColor="#FFFFFF"
-        android:padding="16dp"
-        android:elevation="4dp" />
-
-    <!-- 가게 등록 입력 버튼 -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="가게등록"
         android:layout_weight="1"
-        android:textSize="40sp"
         android:background="@drawable/button_background"
-        android:textColor="#FFFFFF"
+        android:elevation="4dp"
         android:padding="16dp"
-        android:elevation="4dp" />
+        android:text="가게수정"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp" />
+
 
 </LinearLayout>

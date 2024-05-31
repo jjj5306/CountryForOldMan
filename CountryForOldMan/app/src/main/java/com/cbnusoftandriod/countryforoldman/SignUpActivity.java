@@ -1,8 +1,10 @@
 package com.cbnusoftandriod.countryforoldman;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -24,8 +26,11 @@ public class SignUpActivity extends AppCompatActivity {
     public CheckBox ownerCheck;
     private boolean returnValue;
 
-
     public Button btnCheck;
+
+    private String enteredAddress = "";
+    public Button btnEnterAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,10 @@ public class SignUpActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.etAddress);
         ownerCheck = findViewById(R.id.ownerCheck);
         btnCheck = findViewById(R.id.btnCheckName);
+
+
+        btnEnterAddress = findViewById(R.id.btnEnterAddress);
+
 
         ownerCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -96,5 +105,43 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
+        //회원가입 화면에서 주소입력 버튼 누르면 주소입력 pop-up이 보이게 해주는 이벤트 처리 부분
+        btnEnterAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddressDialog();
+            }
+        });
+    }
+
+    //pop-up관련 함수
+    private void showAddressDialog() {
+        //Diaglog 객체를 생성하고 현재 액티비티에 context 전달
+        final Dialog dialog = new Dialog(SignUpActivity.this);
+        dialog.setContentView(R.layout.auth_signup_address);
+
+        //도로명 주소 입력 부분
+        final EditText etDetailAddress = dialog.findViewById(R.id.etDetailAddress);
+        Button btnDialogSubmit = dialog.findViewById(R.id.btnDialogSubmit);
+
+        //팝업창에서 주소입력 버튼 클릭하면
+        btnDialogSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enteredAddress = etDetailAddress.getText().toString();
+                if (enteredAddress.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    btnEnterAddress.setText(enteredAddress);
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        //팝업창 크기 조절
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.show();
     }
 }

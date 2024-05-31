@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cbnusoftandriod.countryforoldman.repository.ShopRepository;
 import com.cbnusoftandriod.countryforoldman.util.GeocoderHelper;
 
+
 public class RegisterShop extends AppCompatActivity {
 
     private static final String TAG = "RegisterShop";
 
     private Spinner spinnerCategory;
     private Spinner spinnerSubCategory;
-    private EditText etShopName;
+    private TextView etShopName;
     private EditText etPhoneNumber;
     private EditText etAddress;
     private Button btnRegisterShop;
