@@ -114,7 +114,6 @@ public class SignUpActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(SignUpActivity.this);
         dialog.setContentView(R.layout.auth_signup_address);
 
-        final EditText etDetailAddress = dialog.findViewById(R.id.etDetailAddress);
         final EditText etAddress = dialog.findViewById(R.id.etDialogAddress);
 
         Button btnDialogValidate = dialog.findViewById(R.id.btnDialogValidate);
@@ -128,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
                     // 주소 유효성 검사를 수행한 후 주소를 설정
-                    new ValidateAddressTask(dialog, enteredAddress, etDetailAddress).execute();
+                    new ValidateAddressTask(dialog, enteredAddress).execute();
                 }
             }
         });
@@ -136,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
         bunInputAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enteredAddress = etDetailAddress.getText().toString();
+                enteredAddress = etAddress.getText().toString();
                 if (enteredAddress.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "상세 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -153,12 +152,10 @@ public class SignUpActivity extends AppCompatActivity {
     private class ValidateAddressTask extends AsyncTask<Void, Void, double[]> {
         private Dialog dialog;
         private String address;
-        private EditText etDetailAddress;
 
-        public ValidateAddressTask(Dialog dialog, String address, EditText etDetailAddress) {
+        public ValidateAddressTask(Dialog dialog, String address) {
             this.dialog = dialog;
             this.address = address;
-            this.etDetailAddress = etDetailAddress;
         }
 
         @Override
@@ -170,11 +167,10 @@ public class SignUpActivity extends AppCompatActivity {
         protected void onPostExecute(double[] result) {
             if (result != null) {
                 Toast.makeText(SignUpActivity.this, "유효한 주소입니다.", Toast.LENGTH_SHORT).show();
-                btnEnterAddress.setText(address);
                 etAddress.setText(address); // 주소를 EditText에 설정
             } else {
                 Toast.makeText(SignUpActivity.this, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
-                etDetailAddress.setText(""); // 유효하지 않은 주소일 경우 입력 칸 초기화
+                etAddress.setText(""); // 유효하지 않은 주소일 경우 입력 칸 초기화
             }
         }
     }
