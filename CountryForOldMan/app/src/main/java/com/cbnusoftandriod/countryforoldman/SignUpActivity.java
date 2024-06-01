@@ -119,15 +119,15 @@ public class SignUpActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(SignUpActivity.this);
         dialog.setContentView(R.layout.auth_signup_address);
 
-        EditText etAddress = dialog.findViewById(R.id.etDialogAddress);
+        EditText etDialogAddress = dialog.findViewById(R.id.etDialogAddress);
 
         Button btnDialogValidate = dialog.findViewById(R.id.btnDialogValidate);
-        Button bunInputAddress = dialog.findViewById(R.id.btnInputAddress);
+        Button btnInputAddress = dialog.findViewById(R.id.btnInputAddress);
 
         btnDialogValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enteredAddress = etAddress.getText().toString();
+                enteredAddress = etDialogAddress.getText().toString();
                 if (enteredAddress.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -137,15 +137,14 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        bunInputAddress.setOnClickListener(new View.OnClickListener() {
+        btnInputAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enteredAddress = etAddress.getText().toString();
+                enteredAddress = etDialogAddress.getText().toString();
                 if (enteredAddress.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "상세 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
-                    etAddress.setText(etAddress.getText().toString() + " " + enteredAddress);
-                    dialog.dismiss();
+                    new GetRoadAddressTask(dialog, enteredAddress).execute();
                 }
             }
         });
@@ -172,7 +171,33 @@ public class SignUpActivity extends AppCompatActivity {
         protected void onPostExecute(double[] result) {
             if (result != null) {
                 Toast.makeText(SignUpActivity.this, "유효한 주소입니다.", Toast.LENGTH_SHORT).show();
-                etAddress.setText(address); // 주소를 EditText에 설정
+                etAddress.setText(address); // 주소를 TextView에 설정
+            } else {
+                Toast.makeText(SignUpActivity.this, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class GetRoadAddressTask extends AsyncTask<Void, Void, String> {
+        private Dialog dialog;
+        private String address;
+
+        public GetRoadAddressTask(Dialog dialog, String address) {
+            this.dialog = dialog;
+            this.address = address;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            return GeocoderHelper.getRoadAddressFromAddress(address);
+        }
+
+        @Override
+        protected void onPostExecute(String roadAddress) {
+            if (roadAddress != null) {
+                Toast.makeText(SignUpActivity.this, "유효한 주소입니다.", Toast.LENGTH_SHORT).show();
+                etAddress.setText(roadAddress); // 도로명 주소를 TextView에 설정
+                dialog.dismiss();
             } else {
                 Toast.makeText(SignUpActivity.this, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
             }
