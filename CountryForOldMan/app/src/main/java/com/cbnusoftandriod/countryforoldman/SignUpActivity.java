@@ -80,16 +80,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 // UserRepository를 사용하여 회원가입 처리
-                long newUserId = userRepository.registerUser(name, phoneNumber, password, address, returnValue);
-
-                if (newUserId != -1) {
-                    Toast.makeText(SignUpActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
-                }
+                userRepository.registerUser(name, phoneNumber, password, address, returnValue);
+                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -100,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String phoneNumber = etPhoneNumber.getText().toString();
                 if (userDAO.isUserPhoneNumberExists(phoneNumber))
                     Toast.makeText(SignUpActivity.this, "이미 존재하는 회원입니다.", Toast.LENGTH_SHORT).show();
-                else{
+                else {
                     Toast.makeText(SignUpActivity.this, "사용 가능한 전화번호입니다.", Toast.LENGTH_SHORT).show();
 
                 }
@@ -154,8 +147,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private class ValidateAddressTask extends AsyncTask<Void, Void, double[]> {
-        private Dialog dialog;
-        private String address;
+        private final Dialog dialog;
+        private final String address;
 
         public ValidateAddressTask(Dialog dialog, String address) {
             this.dialog = dialog;
@@ -179,8 +172,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private class GetRoadAddressTask extends AsyncTask<Void, Void, String> {
-        private Dialog dialog;
-        private String address;
+        private final Dialog dialog;
+        private final String address;
 
         public GetRoadAddressTask(Dialog dialog, String address) {
             this.dialog = dialog;
