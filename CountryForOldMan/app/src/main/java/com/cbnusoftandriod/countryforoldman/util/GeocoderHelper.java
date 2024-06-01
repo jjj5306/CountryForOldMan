@@ -2,15 +2,15 @@ package com.cbnusoftandriod.countryforoldman.util;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URLEncoder;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class GeocoderHelper {
 
@@ -42,7 +42,7 @@ public class GeocoderHelper {
                 while ((line = reader.readLine()) != null) {
                     result.append(line);
                 }
-                Log.d(TAG, "Response: " + result.toString());
+                Log.d(TAG, "Response: " + result);
                 return parseCoordinates(result.toString());
             } else {
                 Log.e(TAG, "Error Response Code: " + responseCode);
@@ -94,7 +94,7 @@ public class GeocoderHelper {
                 while ((line = reader.readLine()) != null) {
                     result.append(line);
                 }
-                Log.d(TAG, "Response: " + result.toString());
+                Log.d(TAG, "Response: " + result);
                 return parseRoadAddress(result.toString());
             } else {
                 Log.e(TAG, "Error Response Code: " + responseCode);

@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.cbnusoftandriod.countryforoldman.model.User;
 import com.cbnusoftandriod.countryforoldman.repository.DatabaseHelper;
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
     }

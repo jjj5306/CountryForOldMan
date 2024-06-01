@@ -2,18 +2,19 @@ package com.cbnusoftandriod.countryforoldman.model;
 
 public class Shop {
 
-    private String shopname;
+    private final String shopname;
 
-    private String phonenumber;
+    private final String phonenumber;
 
-    private String address;
+    private final String address;
 
-    private String category;
+    private final String category;
 
-    private Long owner_id;
+    private final Long owner_id;
 
     /**
      * owner_id는 로그인 시 로그인한 사용자의 id를 기억해둬야함.
+     *
      * @param shopname
      * @param phonenumber
      * @param address
@@ -37,7 +38,9 @@ public class Shop {
         return phonenumber;
     }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        return address;
+    }
 
     public String getCategory() {
         return category;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuSelect extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class MenuSelect extends AppCompatActivity {
 
         String menuType = getIntent().getStringExtra("menuType");
 
-        String[] koreanMenu = {"김치찌개", "비빔밥", "불고기"};
+        String[] koreanMenu = {"찌개", "비빔밥", "불고기"};
         String[] westernMenu = {"피자", "스파게티", "스테이크"};
         String[] chineseMenu = {"짜장면", "짬뽕", "탕수육"};
         String[] japaneseMenu = {"스시", "라멘", "돈부리"};
@@ -69,6 +70,7 @@ public class MenuSelect extends AppCompatActivity {
                 public void onClick(View v) {
                     // MenuDetail 액티비티로 이동
                     Intent intent = new Intent(MenuSelect.this, MenuDetail.class);
+                    intent.putExtra("selectedMenu", menu); // 선택한 메뉴 전달
                     startActivity(intent);
                 }
             });
@@ -80,6 +82,7 @@ public class MenuSelect extends AppCompatActivity {
         }
 
     }
+
     // DP를 픽셀 단위로 변환하는 메서드
     public int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;

@@ -27,7 +27,7 @@ public class UserDAO {
     }
 
     // 사용자 추가
-    public long insert(User user) {
+    public long insert(User user, double[] coo) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -36,6 +36,8 @@ public class UserDAO {
         values.put(UserEntity.COLUMN_NAME_PASSWORD, user.getPassword());
         values.put(UserEntity.COLUMN_NAME_ADDRESS, user.getAddress());
         values.put(UserEntity.COLUMN_NAME_ROLE, user.getRole() ? 1 : 0);
+        values.put(UserEntity.COLUMN_NAME_X, coo[0]);
+        values.put(UserEntity.COLUMN_NAME_Y, coo[1]);
 
         // 데이터베이스에 사용자 추가 작업 수행
         return db.insert(UserEntity.TABLE_NAME, null, values);
@@ -91,23 +93,24 @@ public class UserDAO {
         return user;
     }
 
-    public String getAddressById(long id) {
-        SQLiteDatabase db = databaseHelper.getDatabase();
-        String address = null;
-        String[] columns = {UserEntity.COLUMN_NAME_ADDRESS};
-        String selection = "_id = ?";
-        String[] selectionArgs = {String.valueOf(id)};
+    public double[] getCooByAddress(String address) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        double[] coo = new double[2];
+        String[] columns = {UserEntity.COLUMN_NAME_X, UserEntity.COLUMN_NAME_Y};
+        String selection = UserEntity.COLUMN_NAME_ADDRESS + " = ?";
+        String[] selectionArgs = {address};
 
         Cursor cursor = db.query(UserEntity.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                address = cursor.getString(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_ADDRESS));
+                coo[0] = cursor.getDouble(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_X));
+                coo[1] = cursor.getDouble(cursor.getColumnIndexOrThrow(UserEntity.COLUMN_NAME_Y));
             }
             cursor.close();
         }
 
-        return address;
+        return coo;
     }
 
     public boolean isUserPhoneNumberExists(String phonenumber) { //존재하면 true 없으면 false
