@@ -2,6 +2,7 @@ package com.cbnusoftandriod.countryforoldman;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cbnusoftandriod.countryforoldman.repository.UserDAO;
 import com.cbnusoftandriod.countryforoldman.repository.UserRepository;
+import com.cbnusoftandriod.countryforoldman.util.GeocoderHelper;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -31,7 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
     private String enteredAddress = "";
     public Button btnEnterAddress;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.etAddress);
         ownerCheck = findViewById(R.id.ownerCheck);
         btnCheck = findViewById(R.id.btnCheckName);
-
-
         btnEnterAddress = findViewById(R.id.btnEnterAddress);
-
 
         ownerCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -61,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // UserRepository 객체 생성
-                UserRepository userRepository = new UserRepository(SignUpActivity.this); // null 대신 context 전달
+                UserRepository userRepository = new UserRepository(SignUpActivity.this);
 
                 // 회원가입 정보 가져오기
                 String name = etname.getText().toString();
@@ -91,7 +89,6 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -100,13 +97,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 UserDAO userDAO = UserDAO.getInstance(SignUpActivity.this);
                 String phoneNumber = etPhoneNumber.getText().toString();
-                if(userDAO.isUserPhoneNumberExists(phoneNumber))
+                if (userDAO.isUserPhoneNumberExists(phoneNumber))
                     Toast.makeText(SignUpActivity.this, "이미 존재하는 회원입니다.", Toast.LENGTH_SHORT).show();
-
             }
         });
 
-        //회원가입 화면에서 주소입력 버튼 누르면 주소입력 pop-up이 보이게 해주는 이벤트 처리 부분
         btnEnterAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,33 +110,72 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    //pop-up관련 함수
     private void showAddressDialog() {
-        //Diaglog 객체를 생성하고 현재 액티비티에 context 전달
         final Dialog dialog = new Dialog(SignUpActivity.this);
         dialog.setContentView(R.layout.auth_signup_address);
 
-        //도로명 주소 입력 부분
         final EditText etDetailAddress = dialog.findViewById(R.id.etDetailAddress);
-        Button btnDialogSubmit = dialog.findViewById(R.id.btnDialogSubmit);
+        final EditText etAddress = dialog.findViewById(R.id.etDialogAddress);
 
-        //팝업창에서 주소입력 버튼 클릭하면
-        btnDialogSubmit.setOnClickListener(new View.OnClickListener() {
+        Button btnDialogValidate = dialog.findViewById(R.id.btnDialogValidate);
+        Button bunInputAddress = dialog.findViewById(R.id.btnInputAddress);
+
+        btnDialogValidate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enteredAddress = etAddress.getText().toString();
+                if (enteredAddress.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 주소 유효성 검사를 수행한 후 주소를 설정
+                    new ValidateAddressTask(dialog, enteredAddress, etDetailAddress).execute();
+                }
+            }
+        });
+
+        bunInputAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 enteredAddress = etDetailAddress.getText().toString();
                 if (enteredAddress.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "상세 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
-                    btnEnterAddress.setText(enteredAddress);
+                    etAddress.setText(etAddress.getText().toString() + " " + enteredAddress);
                     dialog.dismiss();
                 }
             }
         });
 
-        //팝업창 크기 조절
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
         dialog.show();
+    }
+
+    private class ValidateAddressTask extends AsyncTask<Void, Void, double[]> {
+        private Dialog dialog;
+        private String address;
+        private EditText etDetailAddress;
+
+        public ValidateAddressTask(Dialog dialog, String address, EditText etDetailAddress) {
+            this.dialog = dialog;
+            this.address = address;
+            this.etDetailAddress = etDetailAddress;
+        }
+
+        @Override
+        protected double[] doInBackground(Void... params) {
+            return GeocoderHelper.getCoordinatesFromAddress(address);
+        }
+
+        @Override
+        protected void onPostExecute(double[] result) {
+            if (result != null) {
+                Toast.makeText(SignUpActivity.this, "유효한 주소입니다.", Toast.LENGTH_SHORT).show();
+                btnEnterAddress.setText(address);
+                etAddress.setText(address); // 주소를 EditText에 설정
+            } else {
+                Toast.makeText(SignUpActivity.this, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
+                etDetailAddress.setText(""); // 유효하지 않은 주소일 경우 입력 칸 초기화
+            }
+        }
     }
 }

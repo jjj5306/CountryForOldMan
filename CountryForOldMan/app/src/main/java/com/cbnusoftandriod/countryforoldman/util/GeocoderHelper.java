@@ -1,60 +1,93 @@
 package com.cbnusoftandriod.countryforoldman.util;
 
-import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
 import android.util.Log;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class GeocoderHelper {
+
     private static final String TAG = "GeocoderHelper";
 
-    // 주소를 위도와 경도로 변환하는 메서드
-    public static double[] getCoordinatesFromAddress(Context context, String address) {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+    public static double[] getCoordinatesFromAddress(String address) {
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        StringBuilder result = new StringBuilder();
+
         try {
-            List<Address> addresses = geocoder.getFromLocationName(address, 5);
-            if (addresses.size() != 0) {
-                Address location = addresses.get(0);
-                if (location.hasLatitude() && location.hasLongitude() && isValidAddress(location)) {
-                    Log.d(TAG, "유효한 주소: " + location);
-                    return new double[]{location.getLatitude(), location.getLongitude()};
-                } else {
-                    Log.d(TAG, "위도와 경도가 없는 주소: " + location);
+            // 주소 인코딩
+            String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8.toString());
+            String urlString = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + encodedAddress;
+            Log.d(TAG, "Encoded URL: " + urlString);
+
+            URL url = new URL(urlString);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+
+            // 요청 헤더 설정
+            urlConnection.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "5m7q1kmnox");
+            urlConnection.setRequestProperty("X-NCP-APIGW-API-KEY", "LfmQ92nF0Klu9aJohxjsC7tmBrb2AOZ1Ak1NcAAh");
+
+            int responseCode = urlConnection.getResponseCode();
+            Log.d(TAG, "Response Code: " + responseCode);
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
                 }
+                Log.d(TAG, "Response: " + result.toString());
+                return parseJSON(result.toString());
             } else {
-                Log.d(TAG, "주소를 찾을 수 없음: " + address);
+                Log.e(TAG, "Error Response Code: " + responseCode);
+                result.append("Error: ").append(responseCode);
             }
-            return null; // 유효하지 않은 주소일 경우 null 반환
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(TAG, "Geocoder IOException: " + e.getMessage());
-            return null;
+        } catch (Exception e) {
+            Log.e(TAG, "Exception occurred: " + e.getMessage());
+            e.printStackTrace(); // 스택 트레이스를 출력
+            return null; // 예외가 발생하면 null 반환
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error closing reader: " + e.getMessage());
+                    e.printStackTrace(); // 스택 트레이스를 출력
+                }
+            }
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
+        return null; // 요청이 실패하면 null 반환
     }
 
-    // 주소가 유효한지 확인하는 메서드
-    private static boolean isValidAddress(Address address) {
-        return address.getMaxAddressLineIndex() >= 0 && address.getCountryName() != null;
-    }
-
-    // 위도와 경도를 받아 주소를 반환하는 메서드
-    public static String getAddressFromLocation(Context context, double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+    private static double[] parseJSON(String jsonString) {
         try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 5);
-            if (addresses != null && !addresses.isEmpty()) {
-                return addresses.get(0).getAddressLine(0);
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray addresses = jsonObject.getJSONArray("addresses");
+            Log.d(TAG, "Addresses length: " + addresses.length());
+            if (addresses.length() > 0) {
+                JSONObject address = addresses.getJSONObject(0);
+                double x = address.getDouble("x");
+                double y = address.getDouble("y");
+                Log.d(TAG, "Coordinates: x=" + x + ", y=" + y);
+                return new double[]{x, y}; // 좌표 반환
             } else {
-                return null; // 주소를 찾지 못했을 경우 null 반환
+                Log.d(TAG, "No addresses found");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(TAG, "Geocoder IOException: " + e.getMessage());
-            return null;
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing JSON: " + e.getMessage());
+            e.printStackTrace(); // 스택 트레이스를 출력
         }
+        return null; // 파싱 실패 시 null 반환
     }
 }

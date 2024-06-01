@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "countryforoldman.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 11;
     private static volatile DatabaseHelper databaseHelper = null;
     private SQLiteDatabase database = null;
 
@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(UserEntity.SQL_DELETE_USER_ENTRIES);
-        db.execSQL(ShopEntity.SQL_DELETE_USER_ENTRIES);
+        db.execSQL(ShopEntity.SQL_DELETE_SHOP_ENTRIES);
         onCreate(db);
     }
 

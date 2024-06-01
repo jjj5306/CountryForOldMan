@@ -2,36 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:padding="16dp">
 
     <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
         android:text="주소 검색"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:textStyle="bold" />
 
     <!-- Instruction Text -->
     <TextView
         android:id="@+id/tvInstruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="찾으시는 동(읍/면/리) 또는 도로명 주소를 입력해 주세요"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp" />
+        android:textSize="14sp" />
 
     <!-- Address Input Field and Search Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/etDialogAddress"
@@ -43,51 +43,45 @@
             android:inputType="textPostalAddress" />
 
         <Button
-            android:id="@+id/btnDialogSubmit"
+            android:id="@+id/btnDialogValidate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="확인"
+            android:layout_marginLeft="8dp"
             android:backgroundTint="@color/blue"
-            android:textColor="#FFFFFF"
-            android:layout_marginLeft="8dp" />
+            android:text="확인"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <!-- Example Text -->
+
+    <!-- Search Result -->
     <TextView
         android:id="@+id/tvExample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="예) 역삼동, 서현동, 정자동, 불정로6번길\n도로명 주소 확인 www.juso.go.kr"
-        android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
-        android:layout_marginBottom="16dp" />
+        android:textSize="12sp" />
 
-    <!-- Search Result -->
-    <TextView
-        android:id="@+id/tvSearchResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="해당 도로명 주소에 대한 검색결과입니다"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/etDetailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="상세 주소"
-        android:background="@drawable/edittext_background"
-        android:inputType="textMultiLine"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/edittext_background"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:focusableInTouchMode="false"
+        android:hint="상세 주소"
+        android:inputType="textMultiLine" />
 
     <!-- Address Input Button -->
     <Button
         android:id="@+id/btnInputAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="주소입력"
         android:backgroundTint="@color/blue"
+        android:text="주소입력"
         android:textColor="#FFFFFF" />
 </LinearLayout>
