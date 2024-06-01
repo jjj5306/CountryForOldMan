@@ -22,9 +22,10 @@
         <activity android:name=".OrderList"></activity>
         <activity android:name=".Owner_RegisterOrder"></activity>
         <activity android:name=".OwnerActivity"></activity>
-        <activity android:name=".RegisterShop"></activity>
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".UserActivity"></activity>
+        <activity android:name=".RegisterShopActivity"></activity>
+
 
         <activity
             android:name=".MainActivity"

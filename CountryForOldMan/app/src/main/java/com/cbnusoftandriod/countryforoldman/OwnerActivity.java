@@ -7,8 +7,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import java.security.acl.Owner;
-
 public class OwnerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class OwnerActivity extends AppCompatActivity {
         EnterDeliveryInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OwnerActivity.this, RegisterShop.class);
+                Intent intent = new Intent(OwnerActivity.this, RegisterShopActivity.class);
                 startActivity(intent);
             }
         });

@@ -60,7 +60,6 @@ public class UserDAO {
         return id;
     }
 
-
     public User getUserByPhoneNumber(String phoneNumber) {
         SQLiteDatabase db = databaseHelper.getDatabase();
         User user = null;
@@ -124,9 +123,8 @@ public class UserDAO {
             if (cursor != null) {
                 cursor.close();
             }
-            db.close();
+            //db.close();
         }
         return exists;
     }
-
 }

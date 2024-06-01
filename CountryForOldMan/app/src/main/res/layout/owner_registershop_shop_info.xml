@@ -61,15 +61,14 @@
         tools:ignore="DuplicateIds" />
 
     <TextView
-        android:id="@+id/etTextAddress"
+        android:id="@+id/shop_etAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="주소 입력"
-        android:textSize="18sp"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
         android:layout_marginTop="8dp"
-        />
+        android:background="@drawable/edittext_background"
+        android:hint="주소 입력"
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/etDetailAddress"
@@ -81,7 +80,7 @@
         android:hint="상세주소" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEnterAddress"
+        android:id="@+id/shop_btnEnterAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

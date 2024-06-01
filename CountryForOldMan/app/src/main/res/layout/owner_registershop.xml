@@ -6,32 +6,44 @@
     android:padding="16dp"
     android:background="#F5F5F5">
 
-    <!-- 타이틀 -->
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="가게 등록"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp" />
-
-    <include layout="@layout/owner_registershop_shop_info" />
-
-    <!-- 등록하기 버튼 -->
-
-    <Button
-        android:id="@+id/btnRegisterShop"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="등록하기"
-        android:backgroundTint="#007BFF"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="24dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="32dp" />
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 타이틀 -->
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가게 등록"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp" />
+
+            <!-- 등록하기 버튼 -->
+            <include layout="@layout/owner_registershop_shop_info" />
+
+            <Button
+                android:id="@+id/btnRegisterShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="등록하기"
+                android:backgroundTint="#007BFF"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="24dp"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="32dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
