@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.cbnusoftandriod.countryforoldman.repository.ShopRepository;
 
@@ -24,9 +25,14 @@ public class RegisterShop extends AppCompatActivity {
     private Spinner spinnerSubCategory;
     private TextView etShopName;
     private EditText etPhoneNumber;
-    private EditText etAddress;
+    private TextView etAddress;
     private Button btnRegisterShop;
 
+    //주소입력을 위한 변수들 - 2024-06-01
+    private TextView etTextAddress;
+    private EditText etDetailAddress;
+    private AppCompatButton btnEnterAddress;
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,9 @@ public class RegisterShop extends AppCompatActivity {
         etPhoneNumber = findViewById(R.id.etPhoneNumber);
         etAddress = findViewById(R.id.etAddress);
         btnRegisterShop = findViewById(R.id.btnRegisterShop);
+        etTextAddress = findViewById(R.id.etTextAddress);
+        etDetailAddress = findViewById(R.id.etDetailAddress);
+        btnEnterAddress = findViewById(R.id.btnEnterAddress);
 
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -105,13 +105,14 @@
             android:layout_marginTop="8dp"
             android:textColor="#000000"/>
 
-        <EditText
+        <TextView
             android:id="@+id/etAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edittext_background"
-            android:hint="지번" />
+            android:hint="지번"
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/etDetailAddress"

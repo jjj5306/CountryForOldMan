@@ -60,14 +60,36 @@
         android:textColor="#000000"
         tools:ignore="DuplicateIds" />
 
-    <EditText
-        android:id="@+id/editTextAddress"
+    <TextView
+        android:id="@+id/etTextAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="주소 입력"
+        android:textSize="18sp"
         android:background="@drawable/edittext_background"
         android:padding="10dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        />
+
+    <EditText
+        android:id="@+id/etDetailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_background"
+        android:hint="상세주소" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEnterAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_background"
+        android:text="주소 입력"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewtime"

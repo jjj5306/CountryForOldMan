@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     public EditText etPassword;
     public EditText etConfirmPassword;
     public EditText etPhoneNumber;
-    public EditText etAddress;
+    public TextView etAddress;
     public CheckBox ownerCheck;
     private boolean returnValue;
 
@@ -99,6 +100,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String phoneNumber = etPhoneNumber.getText().toString();
                 if (userDAO.isUserPhoneNumberExists(phoneNumber))
                     Toast.makeText(SignUpActivity.this, "이미 존재하는 회원입니다.", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(SignUpActivity.this, "사용 가능한 전화번호입니다.", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -114,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(SignUpActivity.this);
         dialog.setContentView(R.layout.auth_signup_address);
 
-        final EditText etAddress = dialog.findViewById(R.id.etDialogAddress);
+        EditText etAddress = dialog.findViewById(R.id.etDialogAddress);
 
         Button btnDialogValidate = dialog.findViewById(R.id.btnDialogValidate);
         Button bunInputAddress = dialog.findViewById(R.id.btnInputAddress);
@@ -170,7 +175,6 @@ public class SignUpActivity extends AppCompatActivity {
                 etAddress.setText(address); // 주소를 EditText에 설정
             } else {
                 Toast.makeText(SignUpActivity.this, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
-                etAddress.setText(""); // 유효하지 않은 주소일 경우 입력 칸 초기화
             }
         }
     }

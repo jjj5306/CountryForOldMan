@@ -64,18 +64,6 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="12sp" />
 
-
-    <EditText
-        android:id="@+id/etDetailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edittext_background"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="상세 주소"
-        android:inputType="textMultiLine" />
-
     <!-- Address Input Button -->
     <Button
         android:id="@+id/btnInputAddress"
