@@ -1,6 +1,7 @@
 package com.cbnusoftandriod.countryforoldman.model;
 
 
+
 public class Order {
 
     private String phonenumber;
@@ -18,6 +19,7 @@ public class Order {
         this.userReq = userReq;
         phonenumber = "";
         address = "";
+
     }
 
     public String getPhonenumber() {
@@ -47,6 +49,7 @@ public class Order {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }

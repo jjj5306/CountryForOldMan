@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -9,63 +11,61 @@
         android:layout_margin="20dp">
 
         <LinearLayout
-            android:background="@drawable/edittext_background"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <!-- 가게 1 정보 -->
             <TextView
-                android:id="@+id/textViewShopName"
+                android:id="@+id/shopName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가게 이름"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"
-                android:textColor="#000000"/>
-
-            <EditText
-                android:id="@+id/editTextShopName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_background"
-                android:padding="10dp"
-                android:layout_marginTop="8dp"/>
-
-            <!-- 전화번호 입력 -->
-            <TextView
-                android:id="@+id/textViewPhoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="영업시간"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"
+                android:textSize="18sp"
                 android:layout_marginBottom="8dp"
-                android:textColor="#000000"/>
+                android:visibility="gone" />
 
-            <EditText
-                android:id="@+id/editTextPhoneNumber"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/shopPhone1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:background="@drawable/edittext_background"/>
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- 가게 2 정보 -->
+            <TextView
+                android:id="@+id/shopName2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end"
-                android:layout_marginTop="20dp">
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_background"
-                    android:text="전화하기"
-                    android:textSize="20sp"
-                    android:textColor="#FFFFFF"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/shopPhone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
 
+            <!-- 가게 3 정보 -->
+            <TextView
+                android:id="@+id/shopName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/shopPhone3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>

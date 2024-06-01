@@ -122,7 +122,9 @@
         android:hint="특이사항 입력"
         android:textSize="16sp"
         android:paddingTop="4dp"/>
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"

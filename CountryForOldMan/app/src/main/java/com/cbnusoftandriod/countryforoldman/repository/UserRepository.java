@@ -1,14 +1,16 @@
 package com.cbnusoftandriod.countryforoldman.repository;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.cbnusoftandriod.countryforoldman.model.User;
+import com.cbnusoftandriod.countryforoldman.util.GeocoderHelper;
 
 public class UserRepository {
-    private DatabaseHelper databaseHelper;
-    private UserDAO userDAO;
-    private Context context;
+    private final DatabaseHelper databaseHelper;
+    private final UserDAO userDAO;
+    private final Context context;
 
     public UserRepository(Context context) {
         this.context = context;
@@ -16,13 +18,14 @@ public class UserRepository {
         userDAO = UserDAO.getInstance(context); // context 전달하여 초기화
     }
 
-    //회원가입
+    // 회원가입
     public long registerUser(String username, String phoneNumber, String password, String address, Boolean role) {
         // User 객체 생성
         User user = new User(username, phoneNumber, password, address, role);
 
-        // UserDAO를 사용하여 데이터베이스에 사용자 추가
-        return userDAO.insert(user);
+        // 주소를 기반으로 좌표 계산
+        new GeocodeTask(address, user).execute();
+        return -1; // 초기값으로, GeocodeTask에서 성공적으로 처리되면 값이 설정됨
     }
 
     public User loginUser(String phoneNumber, String password) {
@@ -38,6 +41,36 @@ public class UserRepository {
         } else {
             Toast.makeText(context, "로그인 성공!", Toast.LENGTH_SHORT).show();
             return user;
+        }
+    }
+
+    private class GeocodeTask extends AsyncTask<Void, Void, double[]> {
+        private final String address;
+        private final User user;
+
+        public GeocodeTask(String address, User user) {
+            this.address = address;
+            this.user = user;
+        }
+
+        @Override
+        protected double[] doInBackground(Void... params) {
+            return GeocoderHelper.getCoordinatesFromAddress(address);
+        }
+
+        @Override
+        protected void onPostExecute(double[] result) {
+            if (result != null) {
+                // 좌표를 얻은 후에 UserDAO에 사용자 추가 작업 수행
+                long userId = userDAO.insert(user, result);
+                if (userId != -1) {
+                    Toast.makeText(context, "회원가입 성공!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(context, "유효하지 않은 주소입니다.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
