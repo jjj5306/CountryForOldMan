@@ -10,17 +10,21 @@ import com.cbnusoftandriod.countryforoldman.model.User;
 
 public class OrderRepository {
     private DatabaseHelper databaseHelper;
+    private UserDAO userDAO;
     private OrderDAO orderDAO;
     private Context context;
+    User user= MainActivity.getUser();
+
 
     public OrderRepository(Context context) {
         this.context = context;
         databaseHelper = DatabaseHelper.getInstance(context);
         orderDAO = OrderDAO.getInstance(context); // context 전달하여 초기화
+        userDAO = UserDAO.getInstance(context); // UserDAO 초기화
+
     }
     public long registerOrder(Order order) {
         // User 객체 생성
-        User user= MainActivity.getUser();
         order.setAddress(user.getAddress());
         order.setPhonenumber(user.getPhonenumber());
         if(user==null){
@@ -32,6 +36,9 @@ public class OrderRepository {
     }
     public long row_count(){
         return orderDAO.count_row();
+    }
+    public Order getOrder(){
+        return orderDAO.getMyOrder(userDAO.getIdByPhoneNumber(user.getPhonenumber()));
     }
 
 }

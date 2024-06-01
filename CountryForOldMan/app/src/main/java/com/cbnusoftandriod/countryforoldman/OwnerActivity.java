@@ -30,6 +30,7 @@ public class OwnerActivity extends AppCompatActivity {
                 OrderRepository orderRepository=new OrderRepository(OwnerActivity.this);
                 orderRepository.registerOrder(order);
                 orderRepository.row_count();
+                orderRepository.getOrder();
             }
         });
 

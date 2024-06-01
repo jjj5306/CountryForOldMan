@@ -5,8 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.cbnusoftandriod.countryforoldman.MainActivity;
 import com.cbnusoftandriod.countryforoldman.model.Order;
+import com.cbnusoftandriod.countryforoldman.model.User;
 import com.cbnusoftandriod.countryforoldman.repository.DatabaseHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDAO {
     private static OrderDAO instance;
@@ -51,7 +56,58 @@ public class OrderDAO {
             count = cursor.getLong(0);
         }
         cursor.close();
-        System.out.println(count);
         return count;
+    }
+
+    public List<Order> getOrderListById(long id) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        List<Order> orderList = new ArrayList<>();
+
+        String[] columns = {
+                "_id",
+                OrderEntity.COLUMN_NAME_PHONENUMBER,
+                OrderEntity.COLUMN_NAME_ADDRESS,
+                OrderEntity.COLUMN_NAME_MENU,
+                OrderEntity.COLUMN_NAME_PAY,
+                OrderEntity.COLUMN_NAME_PRICE,
+                OrderEntity.COLUMN_NAME_USER_REQ
+        };
+
+        String selection = "_id = ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        Cursor cursor = db.query(
+                OrderEntity.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long orderId = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+                String phonenumber = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PHONENUMBER));
+                String address = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_ADDRESS));
+                String menu = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_MENU));
+                String pay = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PAY));
+                String price = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PRICE));
+                String userReq = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_USER_REQ));
+
+                Order order = new Order(menu, pay, price, userReq);
+                order.setPhonenumber(phonenumber);
+                order.setAddress(address);
+
+                orderList.add(order);
+            } while (cursor.moveToNext());
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return orderList;
     }
 }
