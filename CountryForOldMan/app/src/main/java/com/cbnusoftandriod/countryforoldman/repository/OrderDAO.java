@@ -59,6 +59,8 @@ public class OrderDAO {
         return count;
     }
 
+
+    /*
     public List<Order> getOrderListById(long id) {
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         List<Order> orderList = new ArrayList<>();
@@ -110,4 +112,5 @@ public class OrderDAO {
 
         return orderList;
     }
+     */
 }

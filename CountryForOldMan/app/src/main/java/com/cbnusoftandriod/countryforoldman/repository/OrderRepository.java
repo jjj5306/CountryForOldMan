@@ -37,8 +37,8 @@ public class OrderRepository {
     public long row_count(){
         return orderDAO.count_row();
     }
-    public Order getOrder(){
+   /* public Order getOrder(){
         return orderDAO.getMyOrder(userDAO.getIdByPhoneNumber(user.getPhonenumber()));
     }
-
+*/
 }
