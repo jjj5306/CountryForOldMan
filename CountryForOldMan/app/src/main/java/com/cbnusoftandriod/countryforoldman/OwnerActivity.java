@@ -26,11 +26,6 @@ public class OwnerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerActivity.this, OrderList.class);
                 startActivity(intent);
-                Order order=new Order("곰탕","카드","오억원","뻥이야");
-                OrderRepository orderRepository=new OrderRepository(OwnerActivity.this);
-                orderRepository.registerOrder(order);
-                orderRepository.row_count();
-                orderRepository.getOrder();
             }
         });
 

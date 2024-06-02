@@ -1,16 +1,12 @@
 package com.cbnusoftandriod.countryforoldman.model;
 
-import android.content.Context;
-
-import com.cbnusoftandriod.countryforoldman.repository.UserDAO;
-
 public class User {
 
-    private String username;
-    private String phonenumber;
-    private String password;
-    private String address;
-    private Boolean role;
+    private final String username;
+    private final String phonenumber;
+    private final String password;
+    private final String address;
+    private final Boolean role;
 
 
     public User(String username, String phonenumber, String password, String address, Boolean role) {
@@ -19,8 +15,6 @@ public class User {
         this.password = password;
         this.address = address;
         this.role = role;
-
-
     }
 
     public String getUsername() {
