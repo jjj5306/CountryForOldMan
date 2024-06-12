@@ -1,13 +1,12 @@
 package com.cbnusoftandriod.countryforoldman;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -62,16 +61,13 @@ public class Owner_RegisterOrder extends AppCompatActivity {
 
                 // Create an Order object with the retrieved data
                 Order order = new Order(phoneNumber, address, menu, paymentMethod, price, notes);
-                OrderRepository orderRepository=new OrderRepository(Owner_RegisterOrder.this);
+                OrderRepository orderRepository = new OrderRepository(Owner_RegisterOrder.this);
                 orderRepository.registerOrder(order);
-                System.out.println(orderRepository.getOrderList(order.getOwnerid()));
 
                 // Intent to navigate to OrderList
-                Intent intent = new Intent(Owner_RegisterOrder.this, OrderList.class);
+                Intent intent = new Intent(Owner_RegisterOrder.this, OrderListActivity.class);
                 startActivity(intent);
             }
         });
-
-
     }
 }

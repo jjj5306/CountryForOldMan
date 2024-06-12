@@ -24,7 +24,7 @@ public class OwnerActivity extends AppCompatActivity {
         OrderList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OwnerActivity.this, OrderList.class);
+                Intent intent = new Intent(OwnerActivity.this, OrderListActivity.class);
                 startActivity(intent);
             }
         });
