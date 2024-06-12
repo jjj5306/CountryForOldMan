@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cbnusoftandriod.countryforoldman.model.Order;
+import com.cbnusoftandriod.countryforoldman.model.User;
 import com.cbnusoftandriod.countryforoldman.repository.OrderRepository;
+import com.cbnusoftandriod.countryforoldman.repository.UserDAO;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class OrderListActivity extends AppCompatActivity {
     private LinearLayout orderContainer;
     private OrderRepository orderRepository;
     private List<Order> orders;
+    private UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +29,20 @@ public class OrderListActivity extends AppCompatActivity {
 
         orderContainer = findViewById(R.id.orderContainer);
 
+        // UserDAO 초기화
+        userDAO = new UserDAO(this);
+
+        // 현재 사용자 가져오기
+        User user = MainActivity.getUser();
+
+        // 사용자의 전화번호로 소유자 ID 가져오기
+        long owner = userDAO.getIdByPhoneNumber(user.getPhonenumber());
+
         // OrderRepository 초기화
         orderRepository = new OrderRepository(this);
 
         // 실제 데이터 가져오기
-        orders = orderRepository.getOrderList(2); // 2 대신 실제 소유자 ID를 사용하세요
+        orders = orderRepository.getOrderList(owner); // 실제 소유자 ID를 사용
 
         // 동적으로 주문 뷰 추가
         for (Order order : orders) {

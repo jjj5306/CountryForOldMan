@@ -11,7 +11,7 @@ public class UserDAO {
     private static UserDAO instance;
     private final DatabaseHelper databaseHelper;
 
-    private UserDAO(Context context) {
+    public UserDAO(Context context) {
         databaseHelper = DatabaseHelper.getInstance(context.getApplicationContext());
     }
 

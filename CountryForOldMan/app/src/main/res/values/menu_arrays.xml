@@ -13,26 +13,36 @@
     <string-array name="detail_menu_koreanfood">
         <item>찌개</item>
         <item>백반</item>
-        <item>떡볶이</item>
+        <item>불고기</item>
+        <item>갈비찜</item>
+        <item>매운탕</item>
     </string-array>
-    <string-array name="detail_menu_westernfood">
+    <string-array name="detail_menu_jpanesefood">
         <item>파스타</item>
         <item>돈까스</item>
         <item>햄버거</item>
+        <item>리조또</item>
+        <item>피자</item>
     </string-array>
-    <string-array name="detail_menu_jpanesefood">
+    <string-array name="detail_menu_westernfood">
         <item>초밥</item>
         <item>라멘</item>
         <item>우동</item>
+        <item>텐동</item>
+        <item>오코노미야끼</item>
     </string-array>
     <string-array name="detail_menu_chinesefood">
         <item>짜장면</item>
         <item>짬뽕</item>
         <item>마라탕</item>
+        <item>양꼬치</item>
+
     </string-array>
     <string-array name="detail_menu_snack">
         <item>커피</item>
         <item>아이스크림</item>
         <item>탕후루</item>
+        <item>요거트</item>
+
     </string-array>
 </resources>
