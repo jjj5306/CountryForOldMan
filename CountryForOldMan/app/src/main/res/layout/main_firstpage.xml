@@ -33,7 +33,7 @@
             android:layout_marginBottom="4dp"
             android:gravity="end"
             android:paddingBottom="20dp"
-            android:text="나라는 없다"
+            android:text="나라는 있다"
             android:textColor="@android:color/black"
             android:textSize="40dp" />
         <!-- Profile Picture -->
@@ -53,7 +53,7 @@
             android:layout_gravity="start"
             android:layout_marginBottom="4dp"
             android:gravity="start"
-            android:text="전화번호 쓰세요 할배"
+            android:text="전화번호를 입력하세요!"
             android:textAlignment="viewStart"
             android:textColor="@android:color/black" />
 
@@ -76,7 +76,7 @@
             android:layout_gravity="start"
             android:layout_marginBottom="4dp"
             android:gravity="start"
-            android:text="비밀번호 쓰세요 할배"
+            android:text="비밀번호를 입력하세요!"
             android:textAlignment="viewStart"
             android:textColor="@android:color/black" />
 
