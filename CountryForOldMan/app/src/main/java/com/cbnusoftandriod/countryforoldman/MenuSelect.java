@@ -21,10 +21,10 @@ public class MenuSelect extends AppCompatActivity {
         String menuType = getIntent().getStringExtra("menuType");
 
         String[] koreanMenu = {"찌개", "백반", "불고기", "갈비찜", "매운탕"};
-        String[] westernMenu = {"피자", "스파게티", "스테이크"};
-        String[] chineseMenu = {"짜장면", "짬뽕", "탕수육"};
-        String[] japaneseMenu = {"스시", "라멘", "돈부리"};
-        String[] snackMenu = {"떡볶이", "순대", "튀김"};
+        String[] westernMenu = {"피자", "파스타", "돈까스","햄버거","리조또"};
+        String[] chineseMenu = {"짜장면", "짬뽕", "탕수육","양꼬치"};
+        String[] japaneseMenu = {"초밥", "라멘", "우동","텐동","오코노미야끼"};
+        String[] snackMenu = {"커피", "아이스크림", "탕후루","요거트"};
 
         String[] selectedMenu;
 

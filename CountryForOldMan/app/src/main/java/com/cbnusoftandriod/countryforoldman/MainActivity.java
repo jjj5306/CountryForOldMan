@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 // 일반 사용자 페이지로 이동
-                                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                                Intent intent = new Intent(MainActivity.this, MenuCategory.class);
                                 startActivity(intent);
                             }
                         }

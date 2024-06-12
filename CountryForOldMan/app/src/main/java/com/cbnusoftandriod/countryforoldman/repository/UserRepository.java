@@ -28,6 +28,12 @@ public class UserRepository {
         return -1; // 초기값으로, GeocodeTask에서 성공적으로 처리되면 값이 설정됨
     }
 
+    public void updateUser(String username,String phoneNumber,String password,String address,Boolean role){
+
+        userDAO.deleteUser();
+        long id=registerUser(username,phoneNumber,password,address,role);
+    }
+
     public User loginUser(String phoneNumber, String password) {
         User user = userDAO.getUserByPhoneNumber(phoneNumber);
 
