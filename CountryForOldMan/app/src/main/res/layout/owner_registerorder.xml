@@ -19,7 +19,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="주소 "
+        android:text="전화번호"
+        android:textSize="16sp"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/phone_number_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="전화번호 입력"
+        android:textSize="16sp"
+        android:paddingTop="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주소"
         android:textSize="16sp"
         android:paddingTop="8dp"/>
 
@@ -36,7 +53,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="메뉴 "
+        android:text="메뉴"
         android:textSize="16sp"
         android:paddingTop="8dp"/>
 
@@ -53,7 +70,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="결제수단 "
+        android:text="결제수단"
         android:textSize="16sp"
         android:paddingTop="8dp"/>
 
@@ -92,7 +109,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="가격 "
+        android:text="가격"
         android:textSize="16sp"
         android:paddingTop="8dp"/>
 
@@ -109,7 +126,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="특이사항 "
+        android:text="특이사항"
         android:textSize="16sp"
         android:paddingTop="8dp"/>
 

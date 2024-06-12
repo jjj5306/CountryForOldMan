@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "countryforoldmap.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final String DATABASE_NAME = "countryforoldman2.db";
+    private static final int DATABASE_VERSION = 13;
     private static volatile DatabaseHelper databaseHelper = null;
     private SQLiteDatabase database = null;
 

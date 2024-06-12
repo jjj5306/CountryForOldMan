@@ -8,6 +8,8 @@ import com.cbnusoftandriod.countryforoldman.MainActivity;
 import com.cbnusoftandriod.countryforoldman.model.Order;
 import com.cbnusoftandriod.countryforoldman.model.User;
 
+import java.util.List;
+
 public class OrderRepository {
     private DatabaseHelper databaseHelper;
     private UserDAO userDAO;
@@ -25,20 +27,20 @@ public class OrderRepository {
     }
     public long registerOrder(Order order) {
         // User 객체 생성
-        order.setAddress(user.getAddress());
-        order.setPhonenumber(user.getPhonenumber());
         if(user==null){
             Toast.makeText(context, "로그인 정보가 필요합니다.", Toast.LENGTH_SHORT).show();
             return -1;
         }
+        order.setOwnerid(userDAO.getIdByPhoneNumber(user.getPhonenumber()));
         // UserDAO를 사용하여 데이터베이스에 사용자 추가
         return orderDAO.insert(order);
     }
     public long row_count(){
         return orderDAO.count_row();
     }
-   /* public Order getOrder(){
-        return orderDAO.getMyOrder(userDAO.getIdByPhoneNumber(user.getPhonenumber()));
+
+
+    public List<Order> getOrderList(long ownerid){
+        return orderDAO.getOrdersByOwnerId(ownerid);
     }
-*/
 }

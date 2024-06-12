@@ -15,8 +15,6 @@ public class User {
         this.password = password;
         this.address = address;
         this.role = role;
-
-
     }
 
     public String getUsername() {

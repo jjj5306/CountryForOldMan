@@ -18,6 +18,7 @@ public class OrderDAO {
     private final DatabaseHelper databaseHelper;
     private final Context context; // context 필드 추가
 
+
     public OrderDAO(Context context) {
         this.context = context; // context 필드 초기화
         databaseHelper = DatabaseHelper.getInstance(context.getApplicationContext());
@@ -43,6 +44,7 @@ public class OrderDAO {
         values.put(OrderEntity.COLUMN_NAME_PAY, order.getPay());
         values.put(OrderEntity.COLUMN_NAME_PRICE, order.getPrice());
         values.put(OrderEntity.COLUMN_NAME_USER_REQ, order.getUserReq());
+        values.put(OrderEntity.COLUMN_NAME_OWNER_ID, order.getOwnerid());
 
         return db.insert(OrderEntity.TABLE_NAME, null, values);
     }
@@ -59,14 +61,13 @@ public class OrderDAO {
         return count;
     }
 
-
-    /*
-    public List<Order> getOrderListById(long id) {
+    public List<Order> getOrdersByOwnerId(long ownerId) {
+        List<Order> orders = new ArrayList<>();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
-        List<Order> orderList = new ArrayList<>();
 
-        String[] columns = {
+        String[] projection = {
                 "_id",
+                OrderEntity.COLUMN_NAME_OWNER_ID,
                 OrderEntity.COLUMN_NAME_PHONENUMBER,
                 OrderEntity.COLUMN_NAME_ADDRESS,
                 OrderEntity.COLUMN_NAME_MENU,
@@ -75,12 +76,12 @@ public class OrderDAO {
                 OrderEntity.COLUMN_NAME_USER_REQ
         };
 
-        String selection = "_id = ?";
-        String[] selectionArgs = { String.valueOf(id) };
+        String selection = OrderEntity.COLUMN_NAME_OWNER_ID + " = ?";
+        String[] selectionArgs = { String.valueOf(ownerId) };
 
         Cursor cursor = db.query(
                 OrderEntity.TABLE_NAME,
-                columns,
+                projection,
                 selection,
                 selectionArgs,
                 null,
@@ -88,29 +89,21 @@ public class OrderDAO {
                 null
         );
 
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                long orderId = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-                String phonenumber = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PHONENUMBER));
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String phoneNumber = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PHONENUMBER));
                 String address = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_ADDRESS));
                 String menu = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_MENU));
                 String pay = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PAY));
                 String price = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_PRICE));
                 String userReq = cursor.getString(cursor.getColumnIndexOrThrow(OrderEntity.COLUMN_NAME_USER_REQ));
 
-                Order order = new Order(menu, pay, price, userReq);
-                order.setPhonenumber(phonenumber);
-                order.setAddress(address);
-
-                orderList.add(order);
-            } while (cursor.moveToNext());
-        }
-
-        if (cursor != null) {
+                Order order = new Order(phoneNumber, address, menu, pay, price, userReq);
+                orders.add(order);
+            }
             cursor.close();
         }
 
-        return orderList;
+        return orders;
     }
-     */
 }
