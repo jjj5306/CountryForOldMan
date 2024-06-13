@@ -5,13 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.cbnusoftandriod.countryforoldman.MainActivity;
 import com.cbnusoftandriod.countryforoldman.model.User;
 
 public class UserDAO {
     private static UserDAO instance;
     private final DatabaseHelper databaseHelper;
 
-    private UserDAO(Context context) {
+    User user= MainActivity.getUser();
+
+
+    public UserDAO(Context context) {
         databaseHelper = DatabaseHelper.getInstance(context.getApplicationContext());
     }
 
@@ -129,5 +133,15 @@ public class UserDAO {
             //db.close();
         }
         return exists;
+    }
+    public void  deleteUser(){
+        SQLiteDatabase db=databaseHelper.getWritableDatabase();
+        String phonenum=user.getPhonenumber();
+
+        String whereClause = "phonenumber = ?";
+        String[] whereArgs = new String[]{phonenum};
+
+        db.delete(UserEntity.TABLE_NAME, whereClause, whereArgs);
+
     }
 }

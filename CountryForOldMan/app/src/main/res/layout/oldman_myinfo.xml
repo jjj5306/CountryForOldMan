@@ -45,7 +45,7 @@
         android:layout_marginBottom="8dp" />
 
     <EditText
-        android:id="@+id/et_family_name"
+        android:id="@+id/et_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="전화번호"
@@ -67,7 +67,7 @@
         android:id="@+id/et_given_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="영문 이름"
+        android:hint="비밀번호"
         android:textColor="#000000"
         android:background="@drawable/edit_text_background"
         android:padding="12dp"
@@ -101,5 +101,6 @@
         android:background="@drawable/button_background"
         android:padding="12dp"
         android:layout_marginTop="24dp" />
+
 
 </LinearLayout>

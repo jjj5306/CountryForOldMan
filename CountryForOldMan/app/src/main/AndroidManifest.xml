@@ -25,7 +25,7 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".UserActivity"></activity>
         <activity android:name=".RegisterShopActivity"></activity>
-
+        <activity android:name=".OrderListActivity"></activity>
 
         <activity
             android:name=".MainActivity"
